@@ -1,0 +1,106 @@
+﻿@using System.Reflection;
+@model Lshp.OpenIDConnect.Service.AdminService.ClientViewModels.Client
+
+
+<div class="card mt-4">
+    <div class="card-block">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="page-title">
+                    <h1 class="page-header text-overflow">
+                        <span ng-show="client.data.clientName">Client: @Model.ClientName</span>
+
+                    </h1>
+                    <form class="form-inline pull-right" action="\Admin\delete\@Model.ClientId" style="margin-right: 20px;" name="deleteclientForm">
+                        <button type="submit" class="btn btn-primary" tt-confirm-click="#m">Delete client</button>
+                    </form>
+                </div>
+
+                <div class="panel-body">
+                    <div class="tab-base">
+
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#Properties" role="tab">Properties</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="/ClientScope/GetClientScope/@Model.Id" data-target="ClientScope" role="tab">Scopes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="/ClientSecret/GetClientSecret/@Model.Id" data-target="Secrets" role="tab">Secrets</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="/ClientRedirectUri/GetClientRedirectUri/@Model.Id" data-target="Secrets" role="tab">Redirect Uris</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="/ClientLogoutRedirectUri/GetClientLogoutRedirectUri/@Model.Id" data-target="LogoutRedirectUris" role="tab">Logout Uris</a>
+                            </li>
+                            @*<li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#Cors" role="tab">Cors</a>
+                                </li>*@
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="/ClientGrantType/GetClientGrantType/@Model.Id" data-target="CustomGrantTypes" role="tab">Grant Types</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="Properties" role="tabpanel">
+                                <form asp-action="editClient" asp-controller="client" method="post">
+                                    @Html.EditorForModel("EditorForModel", Model)
+                                    <button type="submit">Save</button>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="ClientScope" role="tabpanel">
+
+                            </div>
+                            <div class="tab-pane" id="Secrets" role="tabpanel">
+                                @*@if (Model.ClientSecrets != null && Model.ClientSecrets.Count == 0)
+                                    {
+                                        <p>No Claims For client secrets</p>
+                                    }
+                                    else
+                                    {
+                                        await Html.RenderPartialAsync("ListClientSecret", Model.ClientSecrets);
+                                    }*@
+                            </div>
+
+                            <div class="tab-pane" id="RedirectUris" role="tabpanel">
+                                @*@if (Model.RedirectUris != null && Model.RedirectUris.Count == 0)
+                                    {
+                                        <p>No Claims For client Redirect Uris</p>
+                                    }
+                                    else
+                                    {
+                                        await Html.RenderPartialAsync("ListClientRedirectUri", Model.RedirectUris);
+                                    }*@
+                            </div>
+                            <div class="tab-pane" id="LogoutRedirectUris" role="tabpanel">
+                                @*@if (Model.PostLogoutRedirectUris != null && Model.PostLogoutRedirectUris.Count == 0)
+                                    {
+                                        <p>No Claims For client Post Logout RedirectUris</p>
+                                    }
+                                    else
+                                    {
+                                        await Html.RenderPartialAsync("ListPostLogoutRedirectUris", Model.PostLogoutRedirectUris);
+                                    }*@
+                            </div>
+                            @*<div class="tab-pane" id="Cors" role="tabpanel">
+
+                                </div>*@
+                            <div class="tab-pane" id="CustomGrantTypes" role="tabpanel">
+
+                                @*@if (Model.AllowedGrantTypes != null && Model.AllowedGrantTypes.Count == 0)
+                                    {
+                                        <a href="javascript:void(0)" data-newtarget="formAddEditBasic" id="AddCustomGrantTypes" data-href="/ClientGrantType/Create?clientId=@Model.Id" class="singleajax">Add</a>
+                                        <p>No Claims For Allowed GrantTypes</p>
+                                    }
+                                    else
+                                    {
+                                        await Html.RenderPartialAsync(@"..\ClientGrantType\ListAllowedGrantTypes.cshtml", Model.AllowedGrantTypes);
+                                    }*@
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+</div></div></div>

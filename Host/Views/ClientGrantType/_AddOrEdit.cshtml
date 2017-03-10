@@ -1,0 +1,23 @@
+﻿@model Lshp.OpenIDConnect.Service.AdminService.ClientViewModels.ClientGrantType
+
+@{ 
+    Layout = null;
+    var grantTypes = new List<SelectListItem>();
+
+
+    grantTypes.Add(new SelectListItem() { Value = IdentityServer4.Models.GrantType.ClientCredentials, Text = IdentityServer4.Models.GrantType.ClientCredentials });
+    grantTypes.Add(new SelectListItem() { Value = IdentityServer4.Models.GrantType.AuthorizationCode, Text = IdentityServer4.Models.GrantType.AuthorizationCode });
+    grantTypes.Add(new SelectListItem() { Value = IdentityServer4.Models.GrantType.Hybrid, Text = IdentityServer4.Models.GrantType.Hybrid });
+    grantTypes.Add(new SelectListItem() { Value = IdentityServer4.Models.GrantType.Implicit, Text = IdentityServer4.Models.GrantType.Implicit });
+    grantTypes.Add(new SelectListItem() { Value = IdentityServer4.Models.GrantType.ResourceOwnerPassword, Text = IdentityServer4.Models.GrantType.ResourceOwnerPassword });
+
+}
+<form asp-controller="ClientGrantType" asp-action="EditClientGrantType" method="post" class="form-horizontal">
+    @Html.Partial("_ValidationSummary")
+    @Html.HiddenFor(i=>i.Id)
+    @Html.HiddenFor(i => i.ClientId)
+    @Html.DropDownListFor(i => i.GrantType, grantTypes)
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
+
+@Html.Partial("_ViewCommonJavascript")

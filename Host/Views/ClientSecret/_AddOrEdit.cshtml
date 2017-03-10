@@ -1,0 +1,25 @@
+﻿@model Lshp.OpenIDConnect.Service.AdminService.ClientViewModels.ClientSecret
+
+@{ 
+    Layout = null;
+    var types = new List<SelectListItem>();
+
+    types.Add( new SelectListItem() { Text = IdentityServer4.IdentityServerConstants.SecretTypes.SharedSecret, Value = IdentityServer4.IdentityServerConstants.SecretTypes.SharedSecret });
+    types.Add(new SelectListItem() { Text = IdentityServer4.IdentityServerConstants.SecretTypes.X509CertificateBase64, Value = IdentityServer4.IdentityServerConstants.SecretTypes.X509CertificateBase64 });
+    types.Add(new SelectListItem() { Text = IdentityServer4.IdentityServerConstants.SecretTypes.X509CertificateName, Value = IdentityServer4.IdentityServerConstants.SecretTypes.X509CertificateName });
+    types.Add(new SelectListItem() { Text = IdentityServer4.IdentityServerConstants.SecretTypes.X509CertificateThumbprint, Value = IdentityServer4.IdentityServerConstants.SecretTypes.X509CertificateThumbprint });   
+}
+<form asp-controller="ClientSecret" asp-action="EditClientSecret" method="post" class="form-horizontal">
+    @Html.Partial("_ValidationSummary")
+    @Html.HiddenFor(i=>i.Id)
+    @Html.HiddenFor(i => i.ClientId)
+    @Html.DisplayFor(i=>i.Type)
+    @Html.DropDownListFor(i => i.Type,types)
+    @Html.DisplayFor(i => i.Value)
+    @Html.TextBoxFor(i=>i.Value)
+    @Html.DisplayFor(i => i.Description)
+    @Html.TextBoxFor(i=>i.Description) 
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
+
+@Html.Partial("_ViewCommonJavascript")

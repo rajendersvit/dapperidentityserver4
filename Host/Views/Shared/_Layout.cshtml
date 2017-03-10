@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+
+    <title>@ViewData["Title"] - HR Rummy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css"> 
+        <link rel="stylesheet" href="~/lib/MDBootstrap/css/bundle.min.css" asp-append-version="true" />  
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />  
+</head>
+<body>
+
+    <header>
+
+        <nav class="navbar navbar-toggleable-sm bg-primary">
+
+            <!-- Collapse button-->
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapseEx2" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <!--Navbar Brand-->
+            <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">HR Rummy</a>
+
+
+            <div class="collapse navbar-collapse" id="collapseEx2">
+
+                <!--Links-->
+                <ul class="navbar-nav ml-auto ">
+                    <li class="nav-item active">
+                        @*<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>*@
+                    </li>
+                    @Html.Partial("_LoginPartial")
+                </ul>
+            </div>
+
+        </nav> 
+    </header>
+
+    <main>
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="page-footer blue center-on-small-only">
+
+        <!--Footer Links-->
+        <div class="container-fluid">
+            <div class="row">
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                © @DateTime.Now.Year Copyright: HR Rummy
+
+            </div>
+        </div>
+
+    </footer>
+
+     
+        <script src="~/lib/MDBootstrap/js/bundle.min.js" asp-append-version="true"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script> 
+    @RenderSection("scripts", required: false)
+ 
+</body>
+</html>

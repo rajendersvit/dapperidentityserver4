@@ -1,0 +1,14 @@
+﻿@model Lshp.OpenIDConnect.Service.AdminService.ClientViewModels.ClientScope
+
+@{ 
+    Layout = null;
+}
+<form asp-controller="ClientScope" asp-action="EditClientScope" method="post" class="form-horizontal">
+    @Html.Partial("_ValidationSummary")
+    @Html.HiddenFor(i=>i.Id)
+    @Html.HiddenFor(i => i.ClientId)
+    @Html.TextBoxFor(i => i.Scope)
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
+
+@Html.Partial("_ViewCommonJavascript")

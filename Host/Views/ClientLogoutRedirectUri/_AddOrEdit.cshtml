@@ -1,0 +1,14 @@
+﻿@model Lshp.OpenIDConnect.Service.AdminService.ClientViewModels.ClientPostLogoutRedirectUri
+
+@{ 
+    Layout = null;
+}
+<form asp-controller="ClientLogoutRedirectUri" asp-action="EditClientLogoutRedirectUri" method="post" class="form-horizontal">
+    @Html.Partial("_ValidationSummary")
+    @Html.HiddenFor(i=>i.Id)
+    @Html.HiddenFor(i => i.ClientId)
+    @Html.TextBoxFor(i => i.PostLogoutRedirectUri)
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
+
+@Html.Partial("_ViewCommonJavascript")

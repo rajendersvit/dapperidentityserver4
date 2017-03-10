@@ -1,0 +1,79 @@
+﻿@model Lshp.OpenIDConnect.Core.LoginViewModel
+ 
+
+<div class="card mt-4">
+    <div class="card-block"> 
+            <div class="form-header form-header-custom">
+                <h3 id="title"><i class="fa fa-pencil"></i> Login</h3>
+            </div> 
+         
+            <div class="row">
+                @if(Model.EnableLocalLogin)
+                {
+                    <div class="col-md-6">
+                        <form asp-route="Login">
+                            <input type="hidden" asp-for="ReturnUrl" />
+                            <br>
+                            @Html.Partial("_ValidationSummary") 
+                            
+                            <div class="md-form">
+                                <i class="fa fa-user prefix"></i>
+                                <input class="form-control" placeholder="Email" asp-for="Email" autofocus>
+                            </div>
+
+                            <div class="md-form">
+                                <i class="fa fa-envelope prefix"></i>
+                                <input class="form-control" placeholder="Password" asp-for="Password" autofocus>
+
+                            </div>
+
+                            @if (Model.AllowRememberLogin)
+                            {
+                                <div class="md-form">
+                                    <div class="form-group login-remember">
+                                        <label asp-for="RememberLogin">
+                                            <input asp-for="RememberLogin">
+                                            <strong>Remember My Login</strong>
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                            <div class="text-xs-center">
+                                <button class="btn btn-primary">Submit</button>
+                            </div> 
+                        </form>
+                    </div>
+                }
+                    @if (Model.ExternalProviders.Any())
+                    {
+
+                        <div class="col-md-5 offset-md-1">
+
+                            <p><strong>External Logins</strong></p>
+                            @foreach (var provider in Model.ExternalProviders)
+                            {
+
+                                <fieldset class="form-group">
+                                    <a class="btn btn-default"
+                                       asp-action="ExternalLogin"
+                                       asp-route-provider="@provider.AuthenticationScheme"
+                                       asp-route-returnUrl="@Model.ReturnUrl">
+                                        @provider.DisplayName
+                                    </a>
+                                </fieldset>
+                            }
+                        </div>
+                    }
+
+                @if (!Model.EnableLocalLogin && !Model.ExternalProviders.Any())
+                {
+                    <div class="alert alert-warning">
+                        <strong>Invalid login request</strong>
+                        There are no login schemes configured for this client.
+                    </div>
+                }
+            </div> 
+
+          
+    </div>
+</div>

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Lshp.OpenIDConnect.Service.AdminService.ClientViewModels.ClientCorsOrigin>
+@{ 
+    Layout = null;
+}
+
+<table class="table table-bordered table-hover">
+    @foreach (var item in Model)
+    {
+        <tr><td>@item.Origin </td><td></td> </tr> 
+    }
+    </table>

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Lshp.OpenIDConnect.Service.AdminService.ClientViewModels.ClientScope>
+@{
+    Layout = null;
+    var id = @ViewBag.clientID;
+}
+<a href="javascript:void(0)" data-newtarget="AddClientScope_new" id="AddClientScope" data-href="/ClientScope/Create?clientId=@id" class="singleajax">Add</a>
+<div id="AddClientScope_new"></div>
+<table class="table table-bordered table-hover">
+    <thead><tr><th></th><th></th></tr> </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr><td><a href="javascript:void(0)" data-newtarget="AddClientScope_new" id="delClientScope_new" data-href="/ClientScope/DeleteClient/@item.Id?clientId=@item.ClientId" class="singleajax"><i class="fa fa-times" aria-hidden="true"></i></a></td> <td>@item.Scope</td></tr>
+        }
+    </tbody>
+</table>
+
+@Html.Partial("_ViewCommonJavascript")

@@ -1,0 +1,4 @@
+﻿@foreach (var prop in ViewData.ModelMetadata.Properties) { 
+<div class="display-label"> @prop.GetDisplayName() </div>
+<div class="display-field"> @Html.Display(prop.PropertyName)</div>
+  } 

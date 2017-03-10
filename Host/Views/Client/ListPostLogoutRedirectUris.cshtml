@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Lshp.OpenIDConnect.Service.AdminService.ClientViewModels.ClientPostLogoutRedirectUri>
+@{ 
+    Layout = null;
+}
+
+
+<table class="table table-bordered table-hover">
+    @foreach (var item in Model)
+    {
+        <tr><td>@item.PostLogoutRedirectUri </td> </tr>
+    }
+</table>
+ 

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Lshp.OpenIDConnect.Service.AdminService.ClientViewModels.Client>
+@using Lshp.OpenIDConnect.Service.OpenIDConnect;
+
+<div class="card mt-4">
+    <div class="card-block">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="/Client/Create" id="AddClient" class="btn btn-danger" data-href="/Client/Create"><i class="fa fa-plus-circle"></i></a>
+                <div id="AddClient_new"></div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Client Name</th>
+                            <th>Client Code/ID </th>
+                            <th>Offline Access</th>
+                            <th>Include Jwt</th>
+                            <th>Require Secret</th>
+                            <th>Update AccessToken</th>
+                            <th>AccessTokenType</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+    {
+                        <tr>
+                            <th scope="row">@item.Id</th>
+                            <td> @item.ClientName </td>
+                            <td>@item.ClientId</td>
+                            <td>@GetEnumTypes.ConvertBoolToString(item.AllowOfflineAccess)</td>
+                            <td>@GetEnumTypes.ConvertBoolToString(item.IncludeJwtId)</td>
+                            <td>@GetEnumTypes.ConvertBoolToString(item.RequireClientSecret)</td>
+                            <td>@GetEnumTypes.ConvertBoolToString(item.UpdateAccessTokenClaimsOnRefresh)</td>
+                            <td>@GetEnumTypes.GetClientAccessTokenType(item.AccessTokenType)</td>
+                            <td>
+                                @{
+                    var data = new Dictionary<string, string>();
+                    data.Add("clientid", item.ClientId.ToString());
+                                }
+                                <a class="teal-text" asp-action="EditClient" asp-controller="client" asp-all-route-data="data"><i class="fa fa-pencil"></i></a>
+                            </td>
+                        </tr>
+        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

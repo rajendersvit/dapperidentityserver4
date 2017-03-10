@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Lshp.OpenIDConnect.Service.AdminService.ClientViewModels.ClientRedirectUri>
+@{
+    Layout = null;
+    var id = @ViewBag.clientID;
+}
+<a href="javascript:void(0)" data-newtarget="AddClientRedirectUri_new" id="AddClientRedirectUri" data-href="/ClientRedirectUri/Create?clientId=@id" class="singleajax">Add</a>
+<div id="AddClientRedirectUri_new"></div> 
+<table class="table table-bordered table-hover">
+    @foreach (var item in Model)
+    {
+        <tr><td><a href="javascript:void(0)" data-newtarget="AddClientRedirectUri_new" id="delClientRedirectUri_new" data-href="/ClientRedirectUri/DeleteClientRedirectUri/@item.Id?clientId=@item.ClientId" class="singleajax"><i class="fa fa-times" aria-hidden="true"></i></a></td> <td>@item.RedirectUri </td> </tr>
+    }
+</table>
+ 
+@Html.Partial("_ViewCommonJavascript")
